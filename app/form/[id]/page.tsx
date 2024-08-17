@@ -2,8 +2,6 @@
 
 import api from "@/app/api/api"
 import FieldSelector from "@/app/components/formfields/FieldSelector"
-import LongAnswer from "@/app/components/formfields/LongAnswer"
-import ShortAnswer from "@/app/components/formfields/ShortAnswer"
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
@@ -19,7 +17,8 @@ type formFieldType = {
   label: string,
   choices: choiceType[],
   upi_id:string,
-  amount:string
+  amount:string,
+  qr_code:string
 }
 
 type formType = {
@@ -83,6 +82,7 @@ function Form() {
       is_required={field.is_required}
       upi_id={field.upi_id}
       amount={field.amount} 
+      qr_code={field.qr_code}
       value={formData[field.id] || ''} 
       onChange={handleFieldChange} 
       />

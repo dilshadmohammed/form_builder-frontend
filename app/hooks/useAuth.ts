@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Replace with your actual API endpoints
 const API_BASE_URL = 'http://localhost:8000/api';
-const REFRESH_TOKEN_URL = `${API_BASE_URL}/get-access-token/`;
+const REFRESH_TOKEN_URL = `${API_BASE_URL}/user/get-access-token/`;
 
 const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);

@@ -9,15 +9,14 @@ type DropdownType = {
     id: string,
     label: string,
     is_required: boolean,
-    value: string[], // Array of selected choice texts
+    value: string,
     choices: choiceType[], // Array of choices with id and text
     onChange: (fieldId: string, value: string[]) => void; // Callback to handle selected values
 }
 
 function Dropdown({ id, label, is_required, onChange, value, choices }: DropdownType) {
     const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
-        onChange(id, selectedOptions);
+        onChange(id, e.target.value);
     }
 
     return (
@@ -34,7 +33,7 @@ function Dropdown({ id, label, is_required, onChange, value, choices }: Dropdown
             >
                 <option value="" disabled>Select an option</option>
                 {choices && choices.map((choiceOption) => (
-                    <option key={choiceOption.id} value={choiceOption.text}>
+                    <option key={choiceOption.id} value={choiceOption.id}>
                         {choiceOption.text}
                     </option>
                 ))}

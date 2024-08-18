@@ -31,8 +31,8 @@ function RadioButtonField({ id, label, is_required, onChange, value, choices }: 
                         <input
                             required={is_required}
                             onChange={handleChange}
-                            value={choiceOption.text} // Use text as the value for the radio button
-                            checked={value === choiceOption.text} // Check if the text is the selected value
+                            value={choiceOption.id} // Use text as the value for the radio button
+                            checked={value === choiceOption.id} // Check if the text is the selected value
                             className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg mr-2"
                             type="radio"
                             name={id} // Use the same name for all radio buttons in the group

@@ -36,8 +36,8 @@ function MultipleChoice({ id, label, is_required, onChange, value, choices }: Mu
                     <input
                         required={is_required}
                         onChange={handleChange}
-                        value={choiceOption.text} // Use text as the value for the checkbox
-                        checked={value.includes(choiceOption.text)} // Check if the text is included in the value array
+                        value={choiceOption.id} // Use text as the value for the checkbox
+                        checked={value.includes(choiceOption.id)} // Check if the text is included in the value array
                         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg mr-2"
                         type="checkbox"
                     />

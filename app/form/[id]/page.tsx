@@ -1,9 +1,10 @@
 'use client'
 
 import api from "@/app/api/api"
+import Button from "@/app/components/Button"
 import FieldSelector from "@/app/components/formfields/FieldSelector"
 import { useParams } from "next/navigation"
-import { useEffect, useState } from "react"
+import { FormEvent, useEffect, useState } from "react"
 
 type choiceType = {
   id: string,
@@ -16,9 +17,9 @@ type formFieldType = {
   type: string,
   label: string,
   choices: choiceType[],
-  upi_id:string,
-  amount:string,
-  qr_code:string
+  upi_id: string,
+  amount: string,
+  qr_code: string
 }
 
 type formType = {
@@ -59,6 +60,40 @@ function Form() {
     }));
   };
 
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+
+    const data = new FormData();
+    data.append('form', id);
+
+    Object.keys(formData).forEach((key) => {
+      const value = formData[key];
+      if (value instanceof FileList) {
+        // If it's a file input (multiple files), append each file
+        Array.from(value).forEach((file, index) => {
+          data.append(`form_fields[${key}]`, file);
+        });
+      } else {
+        // For normal inputs, append the value
+        data.append(`form_fields[${key}]`, value);
+      }
+    });
+
+    try {
+      const response = await api.post(`/forms/view/${id}/`, data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      // Handle the successful response
+      console.log(response.data); // Log the response data if needed
+    } catch (error) {
+      // Handle errors
+      console.error('Error occurred while posting data:', error);
+      // Optionally, display an error message to the user
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -68,27 +103,30 @@ function Form() {
   }
 
   return (
-    <div className="max-w-[50rem] mx-auto justify-center items-center">
+    <form onSubmit={handleSubmit} className="max-w-[50rem] mx-auto justify-center items-center">
       <h1 className="text-3xl mb-5 mt-10 text-center">{form?.title}</h1>
       <p className="text-center">{form?.description}</p>
       {(form?.form_fields || []).map((field) => (
-        <div key={field.id} className="mt-10">
+        <div key={field.id} className="mt-10 border-slate-700 bg-slate-100 p-4 rounded-lg">
           <FieldSelector
-      key={field.id} 
-      id={field.id} 
-      type={field.type}
-      label={field.label} 
-      choices={field.choices}
-      is_required={field.is_required}
-      upi_id={field.upi_id}
-      amount={field.amount} 
-      qr_code={field.qr_code}
-      value={formData[field.id] || ''} 
-      onChange={handleFieldChange} 
-      />
+            key={field.id}
+            id={field.id}
+            type={field.type}
+            label={field.label}
+            choices={field.choices}
+            is_required={field.is_required}
+            upi_id={field.upi_id}
+            amount={field.amount}
+            qr_code={field.qr_code}
+            value={formData[field.id] || ''}
+            onChange={handleFieldChange}
+          />
         </div>
       ))}
-    </div>
+      <div className="float-end my-10">
+        <Button text="Submit" type="submit" />
+      </div>
+    </form>
   )
 }
 

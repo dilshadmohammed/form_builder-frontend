@@ -29,6 +29,7 @@ function FileUpload({ id, label, value, onChange }: FileType) {
             <button
                 className="flex items-center gap-3 px-6 py-3 mt-2 bg-blue-600 text-white text-xs font-bold uppercase rounded-md shadow-md shadow-blue-600/20 hover:shadow-lg hover:shadow-blue-600/30 focus:opacity-85 focus:shadow-none active:opacity-85 active:shadow-none transition-all duration-600 ease"
                 onClick={handleAddFileClick}
+                type="button"
             >{!value && (
                 <svg
                     aria-hidden="true"

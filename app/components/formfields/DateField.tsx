@@ -17,7 +17,7 @@ function DateField({id,label,is_required,onChange,value}:DateFieldType) {
             <label className="block mb-2 text-md font-medium text-gray-900">
                 {label}
             </label>
-            <input className="bg-gray-100 text-gray-900 border-0 rounded-md p-2" id="age" type="date"/>
+            <input onChange={handleChange} className="bg-gray-100 text-gray-900 border-0 rounded-md p-2" id="age" type="date"/>
         </div>
   )
 }

@@ -32,7 +32,7 @@ function MultipleChoice({ id, label, is_required, onChange, value, choices }: Mu
 
             
             {choices && choices.map((choiceOption) => (
-                <div key={choiceOption.id} className="flex items-center mb-2">
+                <label key={choiceOption.id} className="flex items-center mb-2">
                     <input
                         required={is_required}
                         onChange={handleChange}
@@ -42,7 +42,7 @@ function MultipleChoice({ id, label, is_required, onChange, value, choices }: Mu
                         type="checkbox"
                     />
                     <span>{choiceOption.text}</span>
-                </div>
+                </label>
             ))}
             </div>
         </div>

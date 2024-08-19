@@ -27,7 +27,7 @@ function RadioButtonField({ id, label, is_required, onChange, value, choices }: 
             </label>
             <div className="ml-10">
                 {choices && choices.map((choiceOption) => (
-                    <div key={choiceOption.id} className="flex items-center mb-2">
+                    <label key={choiceOption.id} className="flex items-center mb-2">
                         <input
                             required={is_required}
                             onChange={handleChange}
@@ -38,7 +38,7 @@ function RadioButtonField({ id, label, is_required, onChange, value, choices }: 
                             name={id} // Use the same name for all radio buttons in the group
                         />
                         <span>{choiceOption.text}</span>
-                    </div>
+                    </label>
                 ))}
             </div>
         </div>

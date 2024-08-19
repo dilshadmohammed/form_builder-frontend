@@ -16,6 +16,7 @@ function Checkbox({ id, label, is_required, onChange, value }: CheckboxType) {
     return (
         <div className="flex items-center mb-2">
             <input
+                id={id}
                 required={is_required}
                 onChange={handleChange}
                 checked={value} // Set checked based on boolean value

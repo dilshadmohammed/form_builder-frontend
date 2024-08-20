@@ -69,27 +69,39 @@ function FormEditor() {
   }
 
   return (
-    <div className="max-w-[50rem] mx-auto justify-center items-center">
-      <h1 className="text-3xl mb-5 mt-10 text-center">{form?.title}</h1>
-      <p className="text-center">{form?.description}</p>
-      {(form?.form_fields || []).map((field) => (
-        <div key={field.id} className="mt-10 border-slate-700 bg-slate-100 p-4 rounded-lg">
-          <FieldSelector
-            key={field.id}
-            id={field.id}
-            type={field.type}
-            label={field.label}
-            choices={field.choices}
-            is_required={field.is_required}
-            upi_id={field.upi_id}
-            amount={field.amount}
-            qr_code={field.qr_code}
-            value={formData[field.id] || ''}
-            onChange={handleFieldChange}
-          />
-        </div>
-      ))}
+    <div className="relative">
+      <img src="https://bbdniit.ac.in/wp-content/uploads/2020/09/banner-background-without-image-min.jpg" className="h-52 w-full" alt="" />
+      <div className="absolute top-[50%] left-[25%]" >
 
+
+        <div className=" bg-slate-100 w-[50rem] mx-auto justify-center items-center p-6 rounded-lg shadow-lg">
+          <h1 className="text-3xl mb-5 mt-10 text-center">{form?.title}</h1>
+          <p className="text-center">{form?.description}</p>
+          {(form?.form_fields || []).map((field) => (
+            <div key={field.id} className="mt-10 border-slate-700 bg-slate-100 p-4 rounded-lg">
+              <FieldSelector
+                key={field.id}
+                id={field.id}
+                type={field.type}
+                label={field.label}
+                choices={field.choices}
+                is_required={field.is_required}
+                upi_id={field.upi_id}
+                amount={field.amount}
+                qr_code={field.qr_code}
+                value={formData[field.id] || ''}
+                onChange={handleFieldChange}
+              />
+            </div>
+          ))}
+        </div>
+        <div className="mt-8 flex justify-center">
+        <div className="relative w-full max-w-xl mt-10 mb-20">
+        <div className="border-t border-gray-300"></div>
+        <button className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-600 border border-gray-300 rounded-md px-2 py-0.5 text-white">+</button>
+    </div>
+        </div>
+      </div>
     </div>
   )
 }

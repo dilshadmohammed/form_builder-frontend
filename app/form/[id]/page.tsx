@@ -78,7 +78,7 @@ function Form() {
         data.append(`form_fields[${key}]`, value);
       }
     });
-    
+
     try {
       const response = await api.post(`/forms/view/${id}/`, data, {
         headers: {
@@ -103,30 +103,40 @@ function Form() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-[50rem] mx-auto justify-center items-center">
-      <h1 className="text-3xl mb-5 mt-10 text-center">{form?.title}</h1>
-      <p className="text-center">{form?.description}</p>
-      {(form?.form_fields || []).map((field) => (
-        <div key={field.id} className="mt-10 border-slate-700 bg-slate-100 p-4 rounded-lg">
-          <FieldSelector
-            key={field.id}
-            id={field.id}
-            type={field.type}
-            label={field.label}
-            choices={field.choices}
-            is_required={field.is_required}
-            upi_id={field.upi_id}
-            amount={field.amount}
-            qr_code={field.qr_code}
-            value={formData[field.id] || ''}
-            onChange={handleFieldChange}
-          />
+    <div>
+
+      <img src="https://bbdniit.ac.in/wp-content/uploads/2020/09/banner-background-without-image-min.jpg" className="h-52 w-full" alt="" />
+      <form onSubmit={handleSubmit}
+        className="absolute z-10 bg-slate-100 w-[50rem] mx-auto justify-center items-center p-6 rounded-lg shadow-lg"
+        style={{
+          top: '50%',
+          left: '25%',
+        }}
+      >
+        <h1 className="text-3xl mb-5 mt-10 text-center">{form?.title}</h1>
+        <p className="text-center">{form?.description}</p>
+        {(form?.form_fields || []).map((field) => (
+          <div key={field.id} className="mt-10 border-slate-700 bg-slate-100 p-4 rounded-lg">
+            <FieldSelector
+              key={field.id}
+              id={field.id}
+              type={field.type}
+              label={field.label}
+              choices={field.choices}
+              is_required={field.is_required}
+              upi_id={field.upi_id}
+              amount={field.amount}
+              qr_code={field.qr_code}
+              value={formData[field.id] || ''}
+              onChange={handleFieldChange}
+            />
+          </div>
+        ))}
+        <div className="float-end my-10">
+          <Button text="Submit" type="submit" />
         </div>
-      ))}
-      <div className="float-end my-10">
-        <Button text="Submit" type="submit" />
-      </div>
-    </form>
+      </form>
+    </div>
   )
 }
 

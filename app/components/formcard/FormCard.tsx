@@ -9,7 +9,7 @@ type formCardTypes = {
 
 function FormCard({title,description,id}:formCardTypes) {
     return (
-        <Link className="card" href={`/form/${id}`} >
+        <Link className="card" href={`/form-editor/${id}`} >
             <h3 className="card__title">{title}
             </h3>
             <p className="card__content">{description}</p>

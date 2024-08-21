@@ -1,6 +1,8 @@
 'use client'
 
 import api from "@/app/api/api"
+import AddField from "@/app/components/AddField"
+import EditField from "@/app/components/EditField"
 import FieldSelector from "@/app/components/formfields/FieldSelector"
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -78,7 +80,8 @@ function FormEditor() {
           <h1 className="text-3xl mb-5 mt-10 text-center">{form?.title}</h1>
           <p className="text-center">{form?.description}</p>
           {(form?.form_fields || []).map((field) => (
-            <div key={field.id} className="mt-10 border-slate-700 bg-slate-100 p-4 rounded-lg">
+            <div key={field.id} className="group mt-10 border-2 border-transparent bg-slate-100 p-4 rounded-lg hover:border-blue-500">
+              <EditField/>
               <FieldSelector
                 key={field.id}
                 id={field.id}
@@ -100,6 +103,7 @@ function FormEditor() {
         <div className="border-t border-gray-300"></div>
         <button className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-600 border border-gray-300 rounded-md px-2 py-0.5 text-white">+</button>
     </div>
+    <AddField/>
         </div>
       </div>
     </div>
